@@ -63,7 +63,7 @@ export function useStopwatch() {
     const total =
       status === "running" ? baseline.current + (now() - startedAt.current) : baseline.current;
     setLaps((prev) => {
-      const previousTotal = prev.length > 0 ? prev[prev.length - 1].total : 0;
+      const previousTotal = prev[prev.length - 1]?.total ?? 0;
       lapIdRef.current += 1;
       return [
         ...prev,
