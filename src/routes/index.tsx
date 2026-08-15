@@ -1,24 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Stopwatch } from "@/components/stopwatch/Stopwatch";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Stopwatch — Precision Timer with Lap Tracking" },
+      {
+        name: "description",
+        content:
+          "A fast, accurate online stopwatch with start, pause, resume, reset, lap recording and lap statistics.",
+      },
+      { property: "og:title", content: "Stopwatch — Precision Timer with Lap Tracking" },
+      {
+        property: "og:description",
+        content: "Start, pause, resume and record laps with a precise millisecond stopwatch.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  return <Stopwatch />;
 }
